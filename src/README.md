@@ -6,6 +6,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 - View all available extracurricular activities
 - Sign up for activities
+- View active announcements from the database
+- Manage announcements (create, edit, delete) when signed in
 
 ## Getting Started
 
@@ -31,6 +33,12 @@ A super simple FastAPI application that allows students to view and sign up for 
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| POST   | `/auth/login?username=<name>&password=<password>`                | Sign in as a teacher/admin                                          |
+| GET    | `/announcements`                                                  | Get currently active announcements                                  |
+| GET    | `/announcements?include_inactive=true&teacher_username=<name>`   | Get all announcements (signed-in users only)                        |
+| POST   | `/announcements?teacher_username=<name>`                         | Create an announcement (signed-in users only)                       |
+| PUT    | `/announcements/{announcement_id}?teacher_username=<name>`       | Update an announcement (signed-in users only)                       |
+| DELETE | `/announcements/{announcement_id}?teacher_username=<name>`       | Delete an announcement (signed-in users only)                       |
 
 ## Data Model
 
@@ -47,4 +55,4 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+All data is stored in MongoDB and seeded with example content when collections are empty.

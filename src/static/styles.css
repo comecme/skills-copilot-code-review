@@ -698,8 +698,9 @@ footer {
 
 .announcement-track {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  align-items: center;
+  align-items: stretch;
   animation: bannerFadeIn 0.35s ease;
 }
 
